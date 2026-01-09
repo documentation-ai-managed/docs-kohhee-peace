@@ -1,0 +1,150 @@
+---
+title: Authentication and Permissions
+description: Learn how to manage access and secure your Kohhee Peace projects with robust authentication methods. This guide covers setting up users, roles, and permissions to protect your code and data.
+---
+
+## Overview
+
+Secure your Kohhee Peace projects by implementing authentication and permissions. Kohhee Peace supports multiple methods including API keys, OAuth 2.0, and two-factor authentication (2FA). You configure these to control access to repositories, APIs, and dashboards at `https://dashboard.example.com`.
+
+Assign roles like admin, developer, or viewer to users. Integrate with identity providers such as Google or GitHub for seamless single sign-on (SSO).
+
+<Callout kind="info">
+  Always store secrets securely. Use environment variables for production.
+</Callout>
+
+## Authentication Methods
+
+Choose from API keys for server-to-server or OAuth for user-based access.
+
+<Tabs>
+  <Tab title="API Keys" icon="key">
+
+    Generate API keys in your dashboard under Settings > API Access.
+
+    <ParamField header="Authorization" param-type="string" required="true">
+      Bearer token format: `Bearer YOUR_API_KEY`.
+    </ParamField>
+
+    <CodeGroup tabs="JavaScript,Python">
+      ````javascript
+      const response = await fetch('https://api.example.com/v1/projects', {
+        headers: {
+          'Authorization': 'Bearer YOUR_API_KEY'
+        }
+      });
+      ````
+
+      ````python
+      import requests
+      response = requests.get(
+        'https://api.example.com/v1/projects',
+        headers={'Authorization': 'Bearer YOUR_API_KEY'}
+      )
+      ````
+    </CodeGroup>
+
+  </Tab>
+  <Tab title="OAuth 2.0" icon="shield">
+
+    Set up OAuth apps at `https://dashboard.example.com/oauth/applications`.
+
+    <ParamField query="client_id" param-type="string" required="true">
+      Your OAuth client ID.
+    </ParamField>
+
+    <ParamField query="client_secret" param-type="string" required="true">
+      Your OAuth client secret.
+    </ParamField>
+
+    Redirect users to `https://auth.example.com/oauth/authorize?client_id=YOUR_CLIENT_ID&redirect_uri=YOUR_REDIRECT_URI&scope=repo:read`.
+
+  </Tab>
+</Tabs>
+
+## User Roles and Permissions
+
+Define granular permissions for your team.
+
+| Role      | Read Repos | Write Code | Manage Users | Admin Dashboard |
+|-----------|------------|------------|--------------|-----------------|
+| Viewer    | ✅         | ❌         | ❌           | ❌              |
+| Developer | ✅         | ✅         | ❌           | ❌              |
+| Admin     | ✅         | ✅         | ✅           | ✅              |
+
+<Columns cols={3}>
+  <Card title="Viewer" icon="eye" href="#viewer-permissions">
+    Read-only access to repositories and issues.
+  </Card>
+  <Card title="Developer" icon="code" href="#developer-permissions">
+    Full code access with push permissions.
+  </Card>
+  <Card title="Admin" icon="shield" href="#admin-permissions">
+    Complete control including user management.
+  </Card>
+</Columns>
+
+## Set Up Two-Factor Authentication
+
+Enable 2FA to add an extra security layer.
+
+<Steps>
+  <Step title="Enable 2FA" icon="lock">
+    Go to `https://dashboard.example.com/settings/security` and click "Enable 2FA".
+  </Step>
+  <Step title="Scan QR Code" icon="camera">
+    Use your authenticator app to scan the QR code.
+  </Step>
+  <Step title="Verify" icon="check-circle">
+    Enter the 6-digit code to confirm setup.
+  </Step>
+</Steps>
+
+<Callout kind="alert">
+  Require 2FA for all team members with elevated permissions.
+</Callout>
+
+## Integrate Identity Providers
+
+Connect Kohhee Peace with external providers for SSO.
+
+<Expandable title="Google OAuth Setup" default-open="true">
+
+  1. In Google Cloud Console, create OAuth 2.0 credentials.
+  2. Add `https://auth.example.com/oauth/callback` as authorized redirect URI.
+  3. Paste Client ID and Secret into Kohhee Peace settings.
+
+  Example config:
+
+  ````json
+  {
+    "provider": "google",
+    "client_id": "YOUR_GOOGLE_CLIENT_ID",
+    "client_secret": "YOUR_GOOGLE_CLIENT_SECRET"
+  }
+  ````
+
+</Expandable>
+
+<Expandable title="GitHub SSO">
+
+  Configure GitHub Enterprise as SAML IdP. Map attributes like `user.email` to Kohhee Peace user fields.
+
+</Expandable>
+
+## Manage Access Tokens and Revocations
+
+Regularly rotate tokens and revoke unused ones.
+
+- View active tokens at `https://dashboard.example.com/settings/tokens`.
+- Revoke via API: `DELETE https://api.example.com/v1/tokens/{token_id}` with admin privileges.
+
+<ParamField path="token_id" param-type="string" required="true">
+  ID of the token to revoke.
+</ParamField>
+
+<Callout kind="tip" kind="danger">
+  Revoke compromised tokens immediately to prevent unauthorized access.
+</Callout>
+
+Secure your Kohhee Peace workflow by combining these methods. Start with API keys for automation, add OAuth for apps, and enforce 2FA for users. Review permissions quarterly.

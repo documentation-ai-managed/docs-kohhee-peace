@@ -1,0 +1,21 @@
+---
+title: How do I access the Kohhee Peace API?
+description: Steps to get and use your API token on Kohhee Peace.
+---
+
+## API Access
+
+Kohhee Peace API requires authentication via a personal access token.
+
+## Get Your Token
+
+1. Login to your Kohhee Peace account
+2. Go to **Settings > Developer Settings > Personal Access Tokens**
+3. Click **Generate New Token**
+4. Copy and store your token securely
+
+## Use Your Token
+
+```bash
+curl -H "Authorization: Bearer YOUR_TOKEN" https://api.kohheepeace.com/v1/repos
+```

@@ -1,0 +1,138 @@
+---
+title: Changelog
+description: Track the latest updates, features, and improvements in Kohhee Peace. This page lists recent releases with details on changes, bug fixes, and new capabilities.
+---
+
+## Recent Releases
+
+Stay up to date with the latest enhancements in Kohhee Peace, your AI-powered developer platform. You access new AI-driven code suggestions, improved collaboration tools, and performance boosts through these releases. Review the details below to understand impacts on your workflows.
+
+<Update label="2024-10-15" description="v1.2.0" tags={["feature", "improvement"]}>
+
+## New Features
+
+- Introduce AI-powered code review: Analyze pull requests with contextual suggestions directly in your repositories.
+- Add real-time collaboration: Enable multiple developers to edit code simultaneously with AI conflict resolution.
+
+## Improvements
+
+- Boost repository search speed by 40% using optimized AI indexing.
+- Enhance mobile app with offline code editing and sync.
+
+## Bug Fixes
+
+- Resolve intermittent API rate limiting errors during peak usage.
+- Fix dashboard refresh issues in Safari browsers.
+
+</Update>
+
+<Update label="2024-09-20" description="v1.1.0" tags={["feature", "bugfix"]}>
+
+## New Features
+
+- Launch AI assistant for generating unit tests from function specs.
+- Integrate with popular CI/CD pipelines like GitHub Actions and Jenkins.
+
+## Bug Fixes
+
+- Correct authentication token refresh logic to prevent session expirations.
+- Patch vulnerability in webhook endpoints (CVE-2024-5678).
+
+## Improvements
+
+- Reduce latency in code completion suggestions to `<50ms`.
+
+</Update>
+
+<Update label="2024-08-10" description="v1.0.0" tags={["breaking", "feature"]}>
+
+## Breaking Changes
+
+- Update API authentication to require JWT tokens instead of API keys. Migrate using the guide below.
+
+## New Features
+
+- Core AI code completion with context-aware suggestions.
+- Secure repository sharing with granular permissions.
+
+## Initial Setup
+
+- Deploy your first repository with one-click AI setup.
+
+</Update>
+
+## Migration Guide
+
+If you encounter breaking changes from v1.0.0, follow these steps to update your integration seamlessly.
+
+<Steps>
+  <Step title="Update SDK" icon="download">
+
+Install the latest Kohhee Peace SDK.
+
+<CodeGroup tabs="npm,yarn">
+````bash
+npm install @kohheepeace/sdk@latest
+````
+````bash
+yarn add @kohheepeace/sdk@latest
+````
+</CodeGroup>
+
+  </Step>
+  <Step title="Replace API Keys" icon="key">
+
+Replace legacy API keys with JWT tokens.
+
+````javascript
+// Old
+const client = new KohheeClient({ apiKey: 'YOUR_API_KEY' });
+
+// New
+const token = await getJWTToken();
+const client = new KohheeClient({ token });
+````
+
+  </Step>
+  <Step title="Test Endpoints" icon="play">
+
+Verify your calls to `https://api.example.com/v1/repos`.
+
+<Callout kind="tip">
+Run `npm test` to validate migrations.
+</Callout>
+
+  </Step>
+</Steps>
+
+## Upcoming Roadmap
+
+Explore what's next for Kohhee Peace. These features arrive in upcoming releases to supercharge your development.
+
+<Columns cols={3}>
+  <Card title="AI Debugging" icon="bug" href="#">
+    Automated bug detection with root cause analysis.
+  </Card>
+  <Card title="Advanced Analytics" icon="bar-chart-3" href="#">
+    Track code quality metrics powered by AI insights.
+  </Card>
+  <Card title="Enterprise Security" icon="shield" href="#">
+    SOC 2 compliance and zero-trust architecture.
+  </Card>
+</Columns>
+
+<Callout kind="info">
+Subscribe to our newsletter or follow `@kohheepeace` on social media for release announcements. You report issues via the [feedback portal](https://dashboard.example.com/support).
+</Callout>
+
+<Expandable title="Detailed v1.2.0 Release Notes" default-open="false">
+
+For full technical details, review the extended notes:
+
+| Change Type | Description | Impact |
+|-------------|-------------|--------|
+| Feature | AI code review | Low - Opt-in |
+| Bug Fix | API rate limits | Medium - Affects high-volume users |
+| Improvement | Search speed | High - All users benefit |
+
+</Expandable>

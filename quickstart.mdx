@@ -1,0 +1,133 @@
+---
+title: Quickstart: Create Your First Project
+description: Get up and running with Kohhee Peace in minutes by setting up an account and creating your initial project. This guide walks you through the essential first steps to start building and collaborating.
+---
+
+## Prerequisites
+
+Before starting, ensure you have:
+
+- A modern web browser (Chrome, Firefox, or Safari)
+- Git installed on your machine (version `>=2.30`)
+- Node.js `>=18` for local development (optional for initial setup)
+
+<Callout kind="info">
+  No credit card required for the free tier. Upgrade later for advanced AI features and unlimited collaborators.
+</Callout>
+
+## Sign Up for Kohhee Peace
+
+Visit [https://kohheepeace.com](https://kohheepeace.com) and click **Sign Up**.
+
+<Tabs>
+  <Tab title="Email" icon="mail">
+    Enter your email, create a password, and verify your account via the confirmation link.
+  </Tab>
+  <Tab title="GitHub OAuth" icon="github">
+    Connect your existing GitHub account for seamless integration. Kohhee Peace imports your repositories automatically.
+  </Tab>
+</Tabs>
+
+## Create Your First Repository
+
+Once logged in, navigate to the dashboard and select **New Repository**.
+
+<Steps>
+  <Step title="Configure Repository" icon="settings">
+    Enter a name like `my-first-ai-project`, select **Public** or **Private**, and enable **AI Assistance** for code suggestions.
+  </Step>
+  <Step title="Initialize with README" icon="file-text">
+    Check **Add a README file** to bootstrap your project.
+  </Step>
+  <Step title="Create Repository" icon="check-circle">
+    Click **Create Repository**. You'll land on your new repo's overview page.
+  </Step>
+</Steps>
+
+## Clone and Make Your First Commit
+
+Clone the repository locally and use Kohhee Peace's AI to generate your initial code.
+
+<CodeGroup tabs="macOS/Linux,Windows">
+  ```bash
+  git clone https://git.kohheepeace.com/your-username/my-first-ai-project.git
+  cd my-first-ai-project
+  ```
+  ```bash
+  git clone https://git.kohheepeace.com/your-username/my-first-ai-project.git
+  cd my-first-ai-project
+  ```
+</CodeGroup>
+
+Create `index.js` with AI assistance:
+
+````jsx
+<CodeGroup>
+  ```javascript
+  // AI-generated: Simple Express server starter
+  const express = require('express');
+  const app = express();
+  const port = 3000;
+
+  app.get('/', (req, res) => {
+    res.send('Hello from Kohhee Peace!');
+  });
+
+  app.listen(port, () => {
+    console.log(`Server running at http://localhost:${port}`);
+  });
+  ```
+</CodeGroup>
+````
+
+Commit and push:
+
+```bash
+git add .
+git commit -m "Initial commit: AI-generated Express server"
+git push origin main
+```
+
+<Callout kind="tip">
+  Enable AI code completion in your repo settings for real-time suggestions as you type.
+</Callout>
+
+## Invite Team Members
+
+Collaborate by adding members directly from the repository page.
+
+1. Go to **Settings > Collaborators**.
+2. Enter emails or usernames (e.g., `collaborator@example.com`).
+3. Select role: **Write** for contributors or **Admin** for full access.
+4. Send invites.
+
+Invited users receive an email to join instantly.
+
+## Explore the Dashboard
+
+Your dashboard at [https://dashboard.kohheepeace.com](https://dashboard.kohheepeace.com) shows:
+
+- Recent activity and AI insights
+- Repository list with performance metrics
+- Collaboration feeds
+
+<Columns cols={3}>
+  <Card title="AI Code Review" icon="zap" href="/authentication">
+    Get instant feedback on pull requests.
+  </Card>
+  <Card title="Team Analytics" icon="bar-chart" href="/introduction">
+    Track contributions and productivity.
+  </Card>
+  <Card title="Integrations" icon="plug" href="#">
+    Connect CI/CD pipelines and tools.
+  </Card>
+</Columns>
+
+## Next Steps
+
+Congratulations! You've created your first Kohhee Peace project. Dive deeper with [authentication guides](/authentication) or explore advanced AI features in the docs.
+
+<Expandable title="Troubleshooting Common Issues" default-open="false">
+  - **Clone fails?** Check your SSH key in account settings.
+  - **Push rejected?** Ensure you pulled latest changes: `git pull origin main`.
+</Expandable>
